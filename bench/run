@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+NUM_THREADS=$2 node ../$1 &
+pid=$!
+
+sleep 5
+
+wrk 'http://127.0.0.1:3000/auth' \
+  -s auth.lua \
+  -d 3 \
+  -c 50 \
+  -t 8
+
+kill $pid

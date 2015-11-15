@@ -7,7 +7,7 @@ var debug = require('debug')('auth:master');
 process.env.PORT = process.env.PORT || 3000;
 
 if (cluster.isMaster) {
-  var numWorkers = require('os').cpus().length;
+  var numWorkers = process.env.NUM_THREADS || require('os').cpus().length;
   debug('Will listen on http://0.0.0.0:%d', process.env.PORT);
 
   for (var i = 0; i < numWorkers; i++) {
