@@ -5,5 +5,6 @@ ADD . .
 
 EXPOSE 3000
 
+RUN apk add --no-cache git
 RUN npm install
 CMD ["node", "index.js"]
